@@ -6,15 +6,18 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body> 
-            <div>
-                <div>
-                    <h1>Join</h1>
-                    <form>
-
-                        <input/>
-                    </form>
+            <div class="container" >
+            <div class="chat-header">Chat</div>
+            <div class="scrollbar">
+                <div id="message-box">
+                    <p style="text-align:right,direction;" v-for = "msg in messages"><span id="spanmsg">{{msg}} &nbsp</span></p>
                 </div>
-
             </div>
+            <form id="msgForm">
+                <div><input type="text" id="msg" placeholder="Type a message"/></div>
+                <button id = "submit" hidden="true">Enter</button>
+            </form>
+        </div>
 </body>
+<script src ="./js/chat.js"></script>
 </html>
