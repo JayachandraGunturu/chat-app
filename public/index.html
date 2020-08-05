@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body> 
-            <div class="container" >
-            <div class="chat-header">Chat</div>
-            <div class="scrollbar">
-                <div id="message-box">
-                    <p style="text-align:right,direction;" v-for = "msg in messages"><span id="spanmsg">{{msg}} &nbsp</span></p>
-                </div>
+    <div class="container">
+        <div class ="chat-header">Chat</div>   
+        <div class="chat__main">
+            <div id="messages" class="chat__messages"></div>
+            <div class="compose">
+                <form id="msgForm">
+                    <input id="msg" placeholder="Type a message"/>
+                    <button id = "submit" hidden="true">Send</button>
+                </form>
             </div>
-            <form id="msgForm">
-                <div><input type="text" id="msg" placeholder="Type a message"/></div>
-                <button id = "submit" hidden="true">Enter</button>
-            </form>
         </div>
+    </div>
+
+<script id="message-template" src="type/html">
+    <div>
+        <p>{{message}}</p>
+    </div>
+
+
+</script>
+
 </body>
+<script src="/socket.io/socket.io.js"></script>
 <script src ="./js/chat.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
 </html>

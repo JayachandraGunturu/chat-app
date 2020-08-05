@@ -13,8 +13,6 @@ const io = socketio(server);
 
 
 io.on('connection',(socket)=>{
-
-socket.emit('welcome',"welcome");
 socket.broadcast.emit('welcome',"New user joined");
 
 socket.on('message',(msg,ackcallback)=>{
