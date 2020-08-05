@@ -19,7 +19,7 @@ socket.on('message',(msg,ackcallback)=>{
 
     try
     {
-       io.emit('messageReceived',msg);
+        socket.broadcast.emit('messageReceived',msg);
         ackcallback(undefined);
     }
     catch(e)

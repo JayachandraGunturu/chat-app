@@ -16,10 +16,14 @@ $form.addEventListener('submit',(e)=>{
     const msg = e.target.elements.msg.value;
 
     if(validate(msg))
-    {socket.emit("message",msg,(error)=>{
+    {
+        const html = Mustache.render(messagTemplate,{message : msg,attrVal: "right"});
+        $messages.insertAdjacentHTML('beforeend',html);
+        socket.emit("message",msg,(error)=>{
             $sendButton.removeAttribute('disabled');
             $inputField.value="";
             $inputField.focus();
+            autoscroll();
             if(error)
             console.log("Error occured: ",error);
 
@@ -37,8 +41,8 @@ $form.addEventListener('submit',(e)=>{
 
 
 socket.on('messageReceived',(msg)=>{
-    const html = Mustache.render(messagTemplate,{message : msg});
-    $messages.insertAdjacentHTML('beforeend',html);  
+    const html = Mustache.render(messagTemplate,{message : msg,attrVal: "left"});
+    $messages.insertAdjacentHTML('beforeend',html); 
     autoscroll();
     });
 
@@ -52,24 +56,7 @@ const validate = (msg)=>
 
 const autoscroll = ()=>
 {
-    const $newMessage = $messages.lastElementChild
-   
-    const newMessageStyles = getComputedStyle($newMessage);
-    const newMessageMargin = parseInt(newMessageStyles.marginBottom);
-    const newMessageHeight = $newMessage.offsetHeight + newMessageMargin;
-
-    
-    const visibleHeight = $messages.offsetHeight;
-
-    const containerHeight = $messages.scrollHeight;
-
-    const scrollOffset = $messages.scrollTop + visibleHeight;
-
-    if (containerHeight - newMessageHeight >= scrollOffset) {
-        $messages.scrollTop = $messages.scrollHeight
-    }
-
-    
+    $messages.scrollTop = $messages.scrollHeight;   
 
 }
 

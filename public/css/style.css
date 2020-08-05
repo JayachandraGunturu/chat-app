@@ -7,9 +7,7 @@
   }
 
 p{
-  font-family: 'Arial', sans-serif;
   word-wrap: break-word;
-  background-color: azure;
   padding: 10px;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -17,6 +15,7 @@ p{
   word-break: break-word;
   hyphens: auto;
   border-radius: 5px 5px 0 0;
+  background-color: azure;
 }
 
  .chat-header {
